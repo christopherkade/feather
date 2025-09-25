@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getSupabaseClient } from "@/lib/supabase/client";
-import { Snackbar, Alert } from "@mui/material";
+import { Alert, Snackbar, Stack } from "@mui/material";
 
 export default function EventRealtime({
   id,
@@ -30,6 +30,10 @@ export default function EventRealtime({
             ...prev,
             { id, message: `${name} joined the event`, severity: "info" },
           ]);
+          // auto-remove after 3s
+          setTimeout(() => {
+            setNotifications((prev) => prev.filter((x) => x.id !== id));
+          }, 3000);
         }
         router.refresh();
       })
@@ -49,6 +53,10 @@ export default function EventRealtime({
             severity: "error",
           },
         ]);
+        // auto-remove after 3s
+        setTimeout(() => {
+          setNotifications((prev) => prev.filter((x) => x.id !== id));
+        }, 3000);
         router.refresh();
       })
       .subscribe();
@@ -70,7 +78,7 @@ export default function EventRealtime({
 
   if (notifications.length === 0) return null;
   return (
-    <>
+    <Stack>
       {notifications.map((n, index) => (
         <Snackbar
           key={n.id}
@@ -85,6 +93,7 @@ export default function EventRealtime({
           <Alert
             severity={n.severity}
             variant="filled"
+            icon={false}
             onClose={() =>
               setNotifications((prev) => prev.filter((x) => x.id !== n.id))
             }
@@ -93,6 +102,6 @@ export default function EventRealtime({
           </Alert>
         </Snackbar>
       ))}
-    </>
+    </Stack>
   );
 }

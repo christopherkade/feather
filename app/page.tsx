@@ -50,7 +50,7 @@ export default async function Home({
     <Container maxWidth="sm" sx={{ py: 8 }}>
       {eventDeleted && (
         <Snackbar open autoHideDuration={4000}>
-          <Alert severity="info" variant="filled">
+          <Alert severity="info" variant="filled" icon={false}>
             Event was deleted by the owner
           </Alert>
         </Snackbar>

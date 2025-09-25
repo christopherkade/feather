@@ -27,7 +27,12 @@ export default function AssignPodsButton({ id }: { id: string }) {
         onClose={() => setError(null)}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
-        <Alert severity="error" variant="filled" onClose={() => setError(null)}>
+        <Alert
+          severity="error"
+          variant="filled"
+          icon={false}
+          onClose={() => setError(null)}
+        >
           {error}
         </Alert>
       </Snackbar>

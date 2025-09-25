@@ -10,6 +10,7 @@ import {
   Box,
   CardActionArea,
 } from "@mui/material";
+import CreateEventButton from "../components/CreateEventButton";
 
 export default function DashboardClient({
   userName,
@@ -27,13 +28,7 @@ export default function DashboardClient({
               Welcome{userName ? `, ${userName}` : ""}
             </Typography>
             <Stack direction="row" gap={2} flexWrap="wrap">
-              <Button
-                LinkComponent={Link}
-                href="/event/new"
-                variant="contained"
-              >
-                Create Event
-              </Button>
+              <CreateEventButton />
               <Button
                 LinkComponent={Link}
                 href="/event/join"

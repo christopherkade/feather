@@ -45,6 +45,7 @@ export default function JoinEventPage() {
           <Alert
             severity="error"
             variant="filled"
+            icon={false}
             onClose={() => setError(null)}
           >
             {error}
